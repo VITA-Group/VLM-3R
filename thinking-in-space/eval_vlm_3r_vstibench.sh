@@ -6,7 +6,7 @@ accelerate launch \
     --num_processes=1 \
     -m lmms_eval \
     --model vlm_3r \
-    --model_args pretrained=Journey9ni/vlm-3r-llava-qwen2-lora,model_base=lmms-lab/LLaVA-NeXT-Video-7B-Qwen2,conv_template=qwen_1_5,max_frames_num=32 \
+    --model_args pretrained=Journey9ni/vlm-3r-llava-qwen2-lora-vstibench,model_base=lmms-lab/LLaVA-NeXT-Video-7B-Qwen2,conv_template=qwen_1_5,max_frames_num=32 \
     --tasks vstibench \
     --batch_size 1 \
     --log_samples \
