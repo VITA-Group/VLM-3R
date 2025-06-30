@@ -617,10 +617,9 @@ class LlavaMetaForCausalLM(ABC):
                             image_feature = torch.cat((base_image_feature, image_feature), dim=0)
                         new_image_features.append(image_feature)
                     else:  # single image operations
-                        image_feature = image_feature[0]
-                        if "unpad" in mm_patch_merge_type:
-                            image_feature = torch.cat((image_feature, self.model.image_newline[None]), dim=0)
-
+                        # For single images, apply the same grid-wise newline logic
+                        # as used for video frames to maintain consistency.
+                        image_feature = self.add_token_per_grid(image_feature)
                         new_image_features.append(image_feature)
                 image_features = new_image_features
             else:

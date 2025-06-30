@@ -73,7 +73,7 @@ The core of VLM-3R is a pre-trained Large Multimodal Model (LMM), integrated wit
 ### 1. Clone Repository and Submodules
 
 ```
-git clone https://github.com/Jian-Zhang-3DV/VLM-3R.git
+git clone https://github.com/VITA-Group/VLM-3R.git
 cd VLM-3R
 git submodule update --init --recursive
 ```
@@ -148,6 +148,24 @@ git submodule update --init --recursive
    - `qwen_1_5`: Specifies the model version to use.
    - `32 2 average grid True`: These are parameter settings for model inference.
    - `playground/demo/47334096.mp4`: Specifies the path to the video file to be tested.
+   - `lmms-lab/LLaVA-NeXT-Video-7B-Qwen2`: Specifies the base model path for the LoRA model.
+
+2. **Run Image Test Example:**
+
+   ```
+   bash scripts/image/demo/image_demo.sh \
+       Journey9ni/vlm-3r-llava-qwen2-lora \
+       qwen_1_5 2 average grid True \
+       playground/demo/scene_47334096_imgs \
+       lmms-lab/LLaVA-NeXT-Video-7B-Qwen2
+   ```
+
+   **Explanation:**
+
+   - `Journey9ni/vlm-3r-llava-qwen2-lora`: Specifies the location of the model checkpoint.
+   - `qwen_1_5`: Specifies the model version to use.
+   - `2 average grid True`: These are parameter settings for model inference.
+   - `playground/demo/scene_47334096_imgs`: Specifies the path to the directory with image files.
    - `lmms-lab/LLaVA-NeXT-Video-7B-Qwen2`: Specifies the base model path for the LoRA model.
 
 ## 📥 Model Weights
