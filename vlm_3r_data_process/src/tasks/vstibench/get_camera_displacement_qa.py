@@ -6,12 +6,14 @@ import random
 try:
     from ..base_qa_generator import BaseQAGenerator
     from ...utils.common_utils import generate_multiple_choice # Import the function
+    from ...utils.camera_pose_utils import get_camera_position_from_c2w
 except ImportError:
     # Fallback for running script directly or different structure
     import sys
     sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..'))
     from tasks.base_qa_generator import BaseQAGenerator
     from utils.common_utils import generate_multiple_choice # Import the function
+    from utils.camera_pose_utils import get_camera_position_from_c2w
 
 logger = logging.getLogger(__name__)
 
@@ -42,12 +44,7 @@ class CameraDisplacementQAGenerator(BaseQAGenerator):
 
     def _get_camera_position(self, pose_matrix):
         """Extracts camera position (world coords) from T_c2w."""
-        try:
-            pose = np.array(pose_matrix)
-            if pose.shape != (4, 4) or np.isnan(pose).any(): return None
-            R_c2w = pose[:3, :3]; t_c2w = pose[:3, 3]
-            return -R_c2w.T @ t_c2w
-        except Exception: return None
+        return get_camera_position_from_c2w(pose_matrix)
 
     def generate_scene_qa(self, scene_name, scene_info, frame_info_for_scene):
         """Generates camera displacement QA pairs."""

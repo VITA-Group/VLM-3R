@@ -16,6 +16,9 @@ The rapid advancement of Large Multimodal Models (LMMs) for 2D images and videos
 
 ## 📰 News
 
+- **2026-07-13:** ⚠️ **Erratum:** fixed a camera-position bug in the VSTiBench data generation pipeline, kindly reported by [Jacob Yeung](https://jacobyeung.org/) (CMU).
+  - The camera center was extracted from camera-to-world poses with `-R.T @ t` (the world-to-camera translation) instead of `pose[:3, 3]`, corrupting ground truth for `camera_displacement`, `camera_obj_abs_dist`, and `camera_obj_rel_dist_v1/v2/v3`. Other VSTiBench categories and all VSiBench data are unaffected.
+  - Corrected labels are live for both the benchmark ([Journey9ni/vstibench](https://huggingface.co/datasets/Journey9ni/vstibench)) and the training data ([Journey9ni/VLM-3R-DATA](https://huggingface.co/datasets/Journey9ni/VLM-3R-DATA)); see the dataset cards for per-category statistics. Results computed on pre-fix labels are not comparable to the corrected revisions; we are retraining VLM-3R on the corrected data and will update reported numbers.
 - **2026-02-21:** Our paper has been accepted to CVPR 2026. See you in Denver!
 - **2025-06-12:** Added inference script for multi-image inputs.
 - **2025-06-11:** We have released the training/evaluation scripts and all associated data.

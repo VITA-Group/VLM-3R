@@ -9,6 +9,7 @@ try:
     # Assuming BaseQAGenerator handles common loading/saving logic
     from ..base_qa_generator import BaseQAGenerator
     from ...utils.common_utils import from_options_to_mc_answer, sample_points_in_oriented_bbox_uniform
+    from ...utils.camera_pose_utils import get_camera_position_from_c2w
 except ImportError:
     # Fallback for running script directly or different structure
     import sys
@@ -16,6 +17,7 @@ except ImportError:
     # Adjust base class import if needed
     from tasks.base_qa_generator import BaseQAGenerator
     from utils.common_utils import from_options_to_mc_answer, sample_points_in_oriented_bbox_uniform
+    from utils.camera_pose_utils import get_camera_position_from_c2w
 
 logger = logging.getLogger(__name__)
 
@@ -48,18 +50,7 @@ class RelativeDistanceQAGeneratorV1(BaseQAGenerator):
 
     def _get_camera_position(self, pose_matrix):
         """Extracts camera position (world coords) from T_c2w."""
-        try:
-            pose = np.array(pose_matrix)
-            if pose.shape != (4, 4) or np.isnan(pose).any():
-                logger.warning("Invalid pose matrix format or contains NaN.")
-                return None
-            R_c2w = pose[:3, :3]
-            t_c2w = pose[:3, 3]
-            cam_position_world = -R_c2w.T @ t_c2w
-            return cam_position_world
-        except Exception as e:
-            logger.error(f"Error getting camera position: {e}", exc_info=True)
-            return None
+        return get_camera_position_from_c2w(pose_matrix)
 
     def _format_qa_item(self, scene_name, scene_info, frame_id, frame_rank, num_frames, potential_options):
         """
@@ -377,4 +368,4 @@ if __name__ == '__main__':
     
     logger.info("Generating QA for V1 (4 choices)")
     generator = RelativeDistanceQAGeneratorV1()
-    generator.run() 
+    generator.run()
