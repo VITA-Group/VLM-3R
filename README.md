@@ -318,12 +318,11 @@ We would like to express our gratitude to the following projects for their valua
 If you find VLM-3R useful for your research, please consider citing our paper:
 
 ```bibtex
-@InProceedings{fan2026vlm3r,
-    author    = {Fan, Zhiwen and Zhang, Jian and Li, Renjie and Zhang, Junge and Chen, Runjin and Hu, Hezhen and Wang, Kevin and Wang, Peihao and Qu, Huaizhi and Zhou, Shijie and Wang, Dilin and Yan, Zhicheng and Xu, Hongyu and Theiss, Justin and Chen, Tianlong and Li, Jiachen and Tu, Zhengzhong and Wang, Zhangyang and Ranjan, Rakesh},
-    title     = {VLM-3R: Vision-Language Models Augmented with Instruction-Aligned 3D Reconstruction},
-    booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
-    month     = {June},
-    year      = {2026},
-    pages     = {31054--31065}
+@inproceedings{fan2026vlm3r,
+  title={VLM-3R: Vision-Language Models Augmented with Instruction-Aligned 3D Reconstruction},
+  author={Fan, Zhiwen and Zhang, Jian and Li, Renjie and Zhang, Junge and Chen, Runjin and Hu, Hezhen and Wang, Kevin and Wang, Peihao and Qu, Huaizhi and Zhou, Shijie and Wang, Dilin and Yan, Zhicheng and Xu, Hongyu and Theiss, Justin and Chen, Tianlong and Li, Jiachen and Tu, Zhengzhong and Wang, Zhangyang and Ranjan, Rakesh},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={31054--31065},
+  year={2026}
 }
 ```
